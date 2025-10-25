@@ -1,89 +1,124 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include <string>
 using namespace std;
 
-string weather_condition();
-int random_battery();
-bool random_obstacle();
-void start_day();
-void displaySummary();             
-string Dicide_Action(string, int, bool);
-string get_random_Weather();
-bool get_random_obstacle();
-int get_random_battery();
+// function declaration
+void startDay();
+int getWeather();
+bool checkObstacle();
+bool checkMalfunction();
+bool deliverToLocation(string location, int &battery, int &success, int &failed, int &delayed);
+void showSummary(int success, int failed, int delayed, int battery);
 
 int main() {
-    srand(time(0));
-    start_day();
-    displaySummary();
+    srand(time(0)); // Make random numbers different each time
+
+    int battery = 100; // start with full battery
+    int success = 0;
+    int failed = 0;
+    int delayed = 0;
+
+    startDay(); // Show welcome message
+
+    // Deliver to Location A
+    cout << "\nDelivering to Location A...\n";
+    deliverToLocation("Location A", battery, success, failed, delayed);
+
+    // Deliver to Location B
+    cout << "\nDelivering to Location B...\n";
+    deliverToLocation("Location B", battery, success, failed, delayed);
+
+    // Deliver to Location C
+    cout << "\nDelivering to Location C...\n";
+    deliverToLocation("Location C", battery, success, failed, delayed);
+
+    // Show final report
+    showSummary(success, failed, delayed, battery);
+
     return 0;
 }
 
-void start_day() {
+// Show welcome message
+void startDay() {
     int n;
-    cout << "\t\tWELCOME\n";
-    cout << "\tBattery percentage is = 100%\n";
-    cout << "Enter Any Number to Start The Day\n";
-    cin >> n;
+    cout << "Welcome\n";
+    cout << "Battery is 100%\n";
+    cout << "Enter any number  to start delivery day..";
+    cin >> n; // Wait for user to Enter 
 }
 
-string Dicide_Action(string weather, int battery, bool obstacle) {
-    if (weather == "clear" && battery >= 40 && !obstacle) {
-        return "Take off";
-    } 
-    else if (battery < 40) {
-        return "Return to base to recharge";
-        battery += 10; 
-    } 
-    else if (weather == "rainy" || weather == "windy") {
-        return "Delayed";
-    } 
-    else if (obstacle) {
-        return "Reroute";
-        battery -= 5;
+// Random weather: 1 = sunny, 2 = windy, 3 = rainy
+int RandomWeather() {
+    return 1+ rand() % 3;
+}
+
+// Random obstacle: true or false
+bool checkObstacle() {
+    return rand() % 2 == 1; // number % 2 = 1 or 2 so it will be either true or false
+}
+bool checkMalfunction() {
+    return rand() % 10 == 0;
+}
+
+// Try to deliver to one location
+bool deliverToLocation(string location, int &battery, int &success, int &failed, int &delayed) {
+    int weather = RandomWeather();
+    bool obstacle = checkObstacle();
+    int batteryDrain = 10 + rand() % 16 ; // Drain 10–25% battery
+
+    // Show conditions
+    cout << "Weather: ";
+    if (weather == 1) {cout << "Sunny\n";}
+    else if (weather == 2){ cout << "Windy\n";}
+    else {cout << "Rainy\n";}
+    
+    cout << "Obstacle: " ;
+    if (obstacle){
+        cout << "yes\n";
     }
-    return "Unknown";
-}
+    else {cout<< "NO\n";}
 
-string weather_condition() {
-    int w = rand() % 3;
-    if (w == 0) return "clear";
-    else if (w == 1) return "windy";
-    else return "rainy";
-}
-
-int random_battery() {
-    int battery = rand() % 100;
-    return battery; 
-}
-
-bool random_obstacle() {
-    int obstacle = rand() % 2;
-    return obstacle; 
-}
-
-
-string get_random_Weather() { return weather_condition(); }
-bool get_random_obstacle() { return random_obstacle(); }
-int get_random_battery() { return random_battery(); }
-
-void displaySummary() {
-    for (char location = 'A'; location <= 'C'; location++) {
-       
-        string weather = get_random_Weather();
-        bool obstacle = get_random_obstacle();
-        int battery = get_random_battery();
-        string action = Dicide_Action(weather, battery, obstacle);
-          if (location =='A'){
-      battery = 100;
-       }
-        cout << "For location " << location << endl;
-        cout << "Weather is " << weather << endl;
-        cout << "Battery = " << battery << "%" << endl;
-        cout << "Obstacle: " << (obstacle ? "Yes" : "No") << endl;
-        cout << "Drone Action: " << action << endl << endl;
+    // Decision making
+    if (weather == 3) {
+        cout << "It's raining Delivery delayed \n";
+        delayed++;
+        return false;
     }
+    if (weather == 2 && battery < 40){
+        cout << "Too windy and battery is low  Recharging (+10%).\n";
+        battery += 10;
+        if (battery > 100){ battery = 100;} // in the case if battery is gone greater than 100
+    }
+    if (obstacle) {
+        cout << "Obstacle is present rerouting..\n";
+        batteryDrain += 5; // Extra battery used
+    }
+    if (checkMalfunction()) {
+        cout << "Oops! System malfunction. Delivery failed.\n";
+        failed++;
+        battery -= batteryDrain;
+        return false;
+    }
+
+   
+    // Successful delivery
+    battery -= batteryDrain;
+    
+    cout << "Delivered to " << location << " successfully!\n";
+    cout << "Battery left: "<<battery<<"%\n";
+    success++;
+    return true;
 }
 
+// Final summary
+void showSummary(int success, int failed, int delayed, int battery) {
+    cout << "\nSummary\n";
+    cout << "Total Deliveries: 3\n";
+    cout << "Successful: " << success <<"\n";
+    cout << "Failed: " << failed <<"\n";
+    cout << "Delayed: " << delayed <<"\n";
+    cout << "Battery Remaining: " << battery <<"%\n";
+
+
+}
