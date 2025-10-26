@@ -83,7 +83,6 @@ bool deliverToLocation(string location, int &battery, int &success, int &failed,
     if (weather == 3) {
         cout << "It's raining Delivery delayed \n";
         delayed++;
-        return false;
     }
     if (weather == 2 && battery < 40){
         cout << "Too windy and battery is low  Recharging (+10%).\n";
@@ -98,7 +97,6 @@ bool deliverToLocation(string location, int &battery, int &success, int &failed,
         cout << "Oops! System malfunction. Delivery failed.\n";
         failed++;
         battery -= batteryDrain;
-        return false;
     }
 
    
@@ -108,7 +106,6 @@ bool deliverToLocation(string location, int &battery, int &success, int &failed,
     cout << "Delivered to " << location << " successfully!\n";
     cout << "Battery left: "<<battery<<"%\n";
     success++;
-    return true;
 }
 
 // Final summary
