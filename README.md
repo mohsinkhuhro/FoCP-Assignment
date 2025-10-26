@@ -17,8 +17,9 @@ and writing the README file. Once the logic and setup were complete, the entire 
 then thoroughly tested it together to ensure it was working properly.
 
 Commits 
-!<img width="1804" height="437" alt="image" src="https://github.com/user-attachments/assets/7c456348-4a45-4111-b643-9c9db0566436" />
-!<img width="1822" height="648" alt="image" src="https://github.com/user-attachments/assets/d007f3f8-0200-4692-86ae-90b5b8c0c15b" />
+<img width="1822" height="648" alt="image" src="https://github.com/user-attachments/assets/d007f3f8-0200-4692-86ae-90b5b8c0c15b" />
+<img width="1790" height="827" alt="image" src="https://github.com/user-attachments/assets/778acd60-1b9c-4981-9e96-31b2d440699b" />
+
 
 ### AI Tool Reflection
 We used Chatgpt for Debugging.
