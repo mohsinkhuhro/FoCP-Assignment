@@ -7,6 +7,16 @@
 |Mohsin Abbas |540316 |1. Programmer 2. Git Manager |
 
 ### Overview
-According to conditions either the delivery is completed successfully or deleyed or failed. and at last it shows the summary of the day, Succesful Deleveries, Delayed deliveries  and Failed deleveries also th remaining battery.
+Our program simulates a day of drone deliveries. First, it asks the user to enter a number to start the simulation. Then, the code directs the drone to deliver packages to different locations based on a set of conditions written in the code. Depending on those conditions, each delivery is marked as either completed successfully, delayed, or failed. Finally, once the simulation is over, it displays a summary of the day, which shows the total counts for successful, delayed, and failed deliveries, along with the drone's remaining battery.
 ### Execution Instructions
 First of all the programm shows Welcome messege and ask the user to enter any number to continue. As the user enter a numbr the code runs and start the delivery simulator and deliver to three locations "A" "B" "C" 
+### Team Collaboration Summary
+Our team began by reviewing the code together . After this initial planning, Vishal took charge of designing the core logic and
+creating a detailed flowchart. While he was doing that, Mohsin set up the project's infrastructure by making the Git repository
+and writing the README file. Once the logic and setup were complete, the entire team worked collectively to write the code and
+then thoroughly tested it together to ensure it was working properly.
+
+### AI Tool Reflection
+We used Chatgpt for Debugging.
+### Future Improvements
+If we knew Arrays the code would have become easier and smaller. also the logic could have build easier. 
