@@ -3,7 +3,7 @@
 #include <ctime>
 using namespace std;
 
-// function declaration
+//function declaration
 void startDay();
 int getWeather();
 bool checkObstacle();
@@ -11,29 +11,29 @@ bool checkMalfunction();
 bool deliverToLocation(string location, int &battery, int &success, int &failed, int &delayed);
 void showSummary(int success, int failed, int delayed, int battery);
 
-int main() {
-    srand(time(0)); // Make random numbers different each time
+int main(){
+    srand(time(0)); //Make random numbers different each time
 
-    int battery = 100; // start with full battery
-    int success = 0;
-    int failed = 0;
-    int delayed = 0;
+    int battery =100; //start with full battery
+    int success =0;
+    int failed =0;
+    int delayed =0;
 
-    startDay(); // Show welcome message
+    startDay(); / Show welcome message
 
-    // Deliver to Location A
-    cout << "\nDelivering to Location A...\n";
-    deliverToLocation("Location A", battery, success, failed, delayed);
+ // Deliver to Location A
+    cout << "\nDelivering to Location A..\n";
+    deliverToLocation("Location A",battery, success, failed, delayed);
 
-    // Deliver to Location B
-    cout << "\nDelivering to Location B...\n";
+ // Deliver to Location B
+    cout << "\nDelivering to Location B..\n";
     deliverToLocation("Location B", battery, success, failed, delayed);
 
-    // Deliver to Location C
-    cout << "\nDelivering to Location C...\n";
+ // Deliver to Location C
+    cout << "\nDelivering to Location C..\n";
     deliverToLocation("Location C", battery, success, failed, delayed);
 
-    // Show final report
+ // Show final report
     showSummary(success, failed, delayed, battery);
 
     return 0;
@@ -48,12 +48,12 @@ void startDay() {
     cin >> n; // Wait for user to Enter 
 }
 
-// Random weather: 1 = sunny, 2 = windy, 3 = rainy
+// Random weather, 1 = sunny, 2 = windy, 3 = rainy
 int RandomWeather() {
     return 1+ rand() % 3;
 }
 
-// Random obstacle: true or false
+// Random obstacle, true or false
 bool checkObstacle() {
     return rand() % 2 == 1; // number % 2 = 1 or 2 so it will be either true or false
 }
@@ -83,6 +83,7 @@ bool deliverToLocation(string location, int &battery, int &success, int &failed,
     if (weather == 3) {
         cout << "It's raining Delivery delayed \n";
         delayed++;
+        return false;
     }
     if (weather == 2 && battery < 40){
         cout << "Too windy and battery is low  Recharging (+10%).\n";
@@ -97,6 +98,7 @@ bool deliverToLocation(string location, int &battery, int &success, int &failed,
         cout << "Oops! System malfunction. Delivery failed.\n";
         failed++;
         battery -= batteryDrain;
+        return false;
     }
 
    
@@ -106,10 +108,12 @@ bool deliverToLocation(string location, int &battery, int &success, int &failed,
     cout << "Delivered to " << location << " successfully!\n";
     cout << "Battery left: "<<battery<<"%\n";
     success++;
+    return true;
 }
 
 // Final summary
-void showSummary(int success, int failed, int delayed, int battery) {
+void showSummary(int success, int failed, int delayed, int battery)
+ {
     cout << "\nSummary\n";
     cout << "Total Deliveries: 3\n";
     cout << "Successful: " << success <<"\n";
