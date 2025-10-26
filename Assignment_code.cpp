@@ -5,7 +5,7 @@ using namespace std;
 
 //function declaration
 void startDay();
-int getWeather();
+int randomWeather();
 bool checkObstacle();
 bool checkMalfunction();
 bool deliverToLocation(string location, int &battery, int &success, int &failed, int &delayed);
@@ -19,7 +19,7 @@ int main(){
     int failed =0;
     int delayed =0;
 
-    startDay(); / Show welcome message
+    startDay(); // Show welcome message
 
  // Deliver to Location A
     cout << "\nDelivering to Location A..\n";
