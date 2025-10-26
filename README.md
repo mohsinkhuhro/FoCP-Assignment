@@ -11,10 +11,13 @@ Our program simulates a day of drone deliveries. First, it asks the user to ente
 ### Execution Instructions
 First of all the programm shows Welcome messege and ask the user to enter any number to continue. As the user enter a numbr the code runs and start the delivery simulator and deliver to three locations "A" "B" "C" 
 ### Team Collaboration Summary
-Our team began by reviewing the code together . After this initial planning, Vishal took charge of designing the core logic and
-creating a detailed flowchart. While he was doing that, Mohsin set up the project's infrastructure by making the Git repository
+Our team began by reviewing the code together .After this initial planning, Vishal took charge of designing the core logic and
+creating a detailed flowchart. While he was doing that,Mohsin set up the project's infrastructure by making the Git repository
 and writing the README file. Once the logic and setup were complete, the entire team worked collectively to write the code and
 then thoroughly tested it together to ensure it was working properly.
+Commits 
+!<img width="1804" height="437" alt="image" src="https://github.com/user-attachments/assets/7c456348-4a45-4111-b643-9c9db0566436" />
+
 
 ### AI Tool Reflection
 We used Chatgpt for Debugging.
