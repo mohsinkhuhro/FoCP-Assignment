@@ -5,7 +5,7 @@ using namespace std;
 
 //function declaration
 void startDay();
-int randomWeather();
+int RandomWeather();
 bool checkObstacle();
 bool checkMalfunction();
 bool deliverToLocation(string location, int &battery, int &success, int &failed, int &delayed);
